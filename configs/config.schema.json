@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "properties": {
+    "language": { "type": "string" },
+    "retry_max": { "type": "integer" }
+  },
+  "required": ["language"]
+}

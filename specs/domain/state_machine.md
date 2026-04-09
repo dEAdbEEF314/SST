@@ -1,0 +1,8 @@
+# State Machine
+
+- INGESTED
+- IDENTIFIED
+- ENRICHED
+- TAGGED
+- STORED
+- FAILED

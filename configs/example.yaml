@@ -1,0 +1,79 @@
+# SST Example Configuration
+
+# Language preference (ISO 639-2 or common codes)
+language: "en"
+
+# Retry configuration
+retry:
+  max_attempts: 4
+  base_delays_seconds:
+    - 0
+    - 60
+    - 300
+    - 600
+  jitter_percent: 20
+
+# Scoring thresholds
+scoring:
+  accept_threshold: 50
+  candidate_threshold: 30
+  confidence_review_delta: 0.05
+  minimum_confidence: 0.55
+
+# Paths
+paths:
+  steam_library: "/data/steamapps"
+  ingest_dir: "/data/ingest"
+  output_dir: "/data/output"
+  review_dir: "/data/review"
+  temp_dir: "/tmp/sst"
+
+# Storage (SeaweedFS)
+storage:
+  type: "seaweedfs"
+  master_url: "http://seaweedfs-master:9333"
+  filer_url: "http://seaweedfs-filer:8888"
+  collection: "sst"
+
+# External APIs
+apis:
+  steam:
+    base_url: "https://store.steampowered.com/api"
+    timeout_seconds: 10
+
+  musicbrainz:
+    base_url: "https://musicbrainz.org/ws/2"
+    user_agent: "SST/1.0 (contact: example@example.com)"
+    timeout_seconds: 10
+
+  vgmdb:
+    base_url: null  # No official API → handled manually / restricted
+    timeout_seconds: 10
+
+  acoustid:
+    base_url: "https://api.acoustid.org/v2"
+    api_key: "YOUR_API_KEY"
+    timeout_seconds: 15
+
+# LLM Providers
+llm:
+  providers:
+    - name: "gemini"
+      model: "gemini-1.5-pro"
+    - name: "openai"
+      model: "gpt-4.1"
+
+  validation:
+    require_dual: true
+    conflict_policy: "REVIEW"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "json"
+
+# Execution
+execution:
+  parallel_workers: 4
+  max_queue_size: 100
+  dry_run: false
