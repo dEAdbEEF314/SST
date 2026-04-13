@@ -34,3 +34,4 @@ Deterministic soundtrack identification and tagging system for Steam-purchased a
 - Python 3.11+
 - Prefect 3.x
 - Docker
+- uv

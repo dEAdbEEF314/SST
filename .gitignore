@@ -46,3 +46,7 @@ Thumbs.db
 
 # Notebook artifacts
 .ipynb_checkpoints/
+
+
+# Add by sexyroot
+userdata.json
