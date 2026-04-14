@@ -15,8 +15,9 @@ VGMdb provides high-quality soundtrack metadata, especially for game music.
 
 ## 3. Access Method
 
-- No official API
-- Use structured dataset or allowed interfaces
+- No official API.
+- Use `hufman/vgmdb` Python package via Git (`vgmdb @ git+https://github.com/hufman/vgmdb.git`).
+- Use structured dataset or allowed interfaces where needed.
 
 ---
 
