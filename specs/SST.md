@@ -59,9 +59,9 @@ All failures MUST be classified:
 
 Global priority:
 
-1. VGMdb  
-2. MusicBrainz  
-3. Steam  
+1. MusicBrainz  
+2. Steam  
+3. VGMdb (Manual User Input override only)
 4. filename  
 
 - Lower-priority sources MUST NOT override higher ones
@@ -216,7 +216,7 @@ Per-service specs:
 
 - Steam → `integrations/steam_api.md`
 - MusicBrainz → `integrations/musicbrainz.md`
-- VGMdb → `integrations/vgmdb.md`
+- VGMdb → `integrations/vgmdb.md` (STRICTLY MANUAL: Must not be executed automatically in pipelines due to aggressive bot protection. Logic is provided for manual CLI/Review usage only.)
 - AcoustID → `integrations/acoustid.md`
 
 ---
@@ -266,19 +266,22 @@ Details defined in:
 
 ---
 
-## 13. LLM Constraints
+## 13. Phase 3: LLM Normalization & Validation (Worker Module)
 
-LLM usage is STRICTLY LIMITED:
+Phase 3 introduces LLM usage which is STRICTLY LIMITED:
 
 - ONLY normalization and validation
 - MUST NOT generate new data
 - MUST NOT guess
-- MUST be deterministic
+- **Strict Determinism**: MUST use `temperature=0.0`.
+- **Target Language Rules**: Priority is: 1. Configured `.env` language, 2. English, 3. Original Source Language.
+- **Pydantic Schemas**: MUST use `instructor` to enforce JSON object structures mapped exactly to the codebase interfaces.
 
 Details:
 
 → implementation/tasks/llm/*  
 → design/llm_node_design.md
+
 
 ---
 
